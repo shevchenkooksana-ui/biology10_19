@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Робочий аркуш: Біоелементи. Біонеорганічні речовини (10 клас)</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f7f4;--card:#fff;--tx:#1d2822;--mut:#5b6a61;--ac:#2f7d4f;--acbg:#e2f1e7;--bd:#d3dcd6;--ok:#1b7a3d;--okbg:#dcf2e3;--bad:#b3261e;--badbg:#fbe2df}
+@media(prefers-color-scheme:dark){:root{--bg:#131915;--card:#1c241f;--tx:#e6ede8;--mut:#9eb0a4;--ac:#6fcf97;--acbg:#243a2d;--bd:#32423a;--ok:#7ee0a0;--okbg:#1d3a27;--bad:#ff938a;--badbg:#472523}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+header{background:var(--ac);color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:14px}
+@media(prefers-color-scheme:dark){header{color:#0d1a12}}
+header h1{margin:0 0 4px;font-size:1.45rem;line-height:1.25}
+header p{margin:0;opacity:.92;font-size:.95rem}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.who{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+@media(max-width:560px){.who{grid-template-columns:1fr}}
+label{display:block;font-weight:600;font-size:.9rem;margin-bottom:4px}
+input[type=text],textarea,select{width:100%;font:inherit;color:var(--tx);background:var(--card);border:1.5px solid var(--bd);border-radius:8px;padding:8px 10px}
+select{padding:6px 8px}
+textarea{min-height:70px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--ac);outline-offset:1px}
+.th{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
+.th h2{margin:0;font-size:1.1rem}
+.pts{white-space:nowrap;background:var(--acbg);color:var(--ac);font-weight:700;font-size:.85rem;border-radius:99px;padding:3px 11px}
+.desc{margin:0 0 10px;color:var(--mut);font-size:.93rem}
+.bank{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.bank span{background:var(--acbg);border-radius:6px;padding:2px 9px;font-size:.9rem}
+.cloze{line-height:2.2}
+.cloze select{display:inline-block;width:auto;min-width:130px;margin:0 2px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid var(--bd);padding:7px 9px;text-align:left;vertical-align:middle}
+th{background:var(--acbg);font-size:.88rem}
+td.n{width:36px;text-align:center;color:var(--mut)}
+td.sel{width:34%}
+.leg{margin:0 0 10px;padding-left:0;list-style:none;font-size:.93rem}
+.leg b{display:inline-block;min-width:30px;color:var(--ac)}
+.q.ok{border-color:var(--ok);background:var(--okbg)}
+.q.bad{border-color:var(--bad);background:var(--badbg)}
+.sc{margin-top:8px;font-weight:600;font-size:.9rem;color:var(--mut);min-height:1.2em}
+.open label{font-weight:500}
+.open+.open{margin-top:10px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+button{font:inherit;font-weight:600;border:0;border-radius:10px;padding:10px 18px;cursor:pointer;background:var(--ac);color:#fff}
+@media(prefers-color-scheme:dark){button{color:#0d1a12}}
+button.sec{background:var(--acbg);color:var(--ac)}
+button:hover{filter:brightness(1.08)}
+#res{display:none;font-size:1.05rem}
+#res.on{display:block}
+#msg{min-height:1.4em;margin-top:10px;font-size:.93rem}
+.err{color:var(--bad)}
+.good{color:var(--ok)}
+footer{color:var(--mut);font-size:.82rem;text-align:center;padding:6px 0 20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Біоелементи. Біонеорганічні речовини: огляд будови й біологічна роль</h1>
+  <p>Робочий аркуш · Біологія, 10 клас · робота з матеріалами § 19 підручника (с. 80–83)</p>
+</header>
+
+<div class="card">
+  <div class="who">
+    <div><label for="nm">Прізвище та ім’я учня / учениці *</label><input type="text" id="nm" placeholder="Наприклад: Коваленко Марія" autocomplete="name"></div>
+    <div><label for="cls">Клас</label><input type="text" id="cls" placeholder="10-А"></div>
+  </div>
+  <p class="desc" style="margin:10px 0 0">Виконайте завдання, скориставшись текстом параграфа. Максимум — <b>20 балів</b>. Завдання 1–5 і 7 перевіряються автоматично, завдання 6 оцінює вчитель.</p>
+</div>
+
+<div id="tasks"></div>
+
+<div class="card">
+  <div class="actions">
+    <button id="bCheck">✔ Перевірити</button>
+    <button id="bSave" class="sec">⬇ Зберегти відповіді у файл</button>
+    <button id="bCopy" class="sec">📋 Копіювати відповіді</button>
+    <button id="bSend" class="sec" style="display:none">✉ Надіслати вчителю</button>
+  </div>
+  <div id="msg"></div>
+</div>
+<div class="card" id="res"></div>
+<footer>За підручником «Біологія, 10 клас» (Соболь, 2018), § 19.</footer>
+</div>
+
+<script>
+// ===== НАЛАШТУВАННЯ ДЛЯ ВЧИТЕЛЯ =====
+const CFG = {
+  SUBMIT_URL: "",      // адреса веб-застосунку Google Apps Script (див. інструкцію); порожньо — кнопки «Надіслати» не буде
+  SHOW_CORRECT: false  // true — учень після перевірки бачить правильні відповіді (підказка при наведенні)
+};
+// ====================================
+
+const TITLE = "Біоелементи. Біонеорганічні речовини (§ 19)";
+const MAXAUTO = 17, MAXALL = 20;
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+const norm = s => String(s).trim().toLowerCase().replace(/\s+/g," ");
+const fmt = n => String(Math.round(n*100)/100).replace(".",",");
+
+function sel(opts, a, lab, per, t){
+  return `<select class="q" data-a="${esc(a)}" data-per="${per}" data-t="${t}" data-lab="${esc(lab)}"><option value="">—</option>${opts.map(o=>`<option>${esc(o)}</option>`).join("")}</select>`;
+}
+function head(n, title, pts, desc){
+  return `<div class="th"><h2>Завдання ${n}. ${title}</h2><span class="pts">${pts}</span></div><p class="desc">${desc}</p>`;
+}
+function rowsTable(t, cols, rows, opts, per){
+  return `<div class="tw"><table><tr><th>№</th><th>${cols[0]}</th><th>${cols[1]}</th></tr>${
+    rows.map((r,i)=>`<tr><td class="n">${i+1}</td><td>${r[0]}</td><td class="sel">${sel(opts,r[1],r[2]||r[0].replace(/<[^>]+>/g,""),per,t)}</td></tr>`).join("")
+  }</table></div>`;
+}
+const card = (t, inner) => `<div class="card" data-card="${t}">${inner}<div class="sc" id="s${t}"></div></div>`;
+
+const tasks = [];
+
+// 1. Заповнити пропуски
+{
+  const ans = ["органогени","ковалентні","водневі","макроелементів","мікроелементи","ферментів"];
+  const bank = ans.concat(["іонні","ліпідів"]).sort((a,b)=>a.localeCompare(b,"uk"));
+  const txt = `Біогенні елементи — це хімічні елементи, що входять до складу живої матерії та відіграють важливу роль у життєдіяльності. Найбільший вміст у живих організмах припадає на елементи-{0} (H, O, C, N), атоми яких утворюють міцні {1} зв’язки, що забезпечує стійкість біомолекул. Гідроген та Оксиген можуть утворювати також слабкі {2} зв’язки. До {3} належать K, Ca, Na, Mg, Fe, P, Cl, S. Zn, I, Cu, Mn, Mo, Co — це {4}; вони активують або пригнічують роботу {5}, тому їх називають «каталізаторами каталізаторів».`;
+  const body = txt.replace(/\{(\d)\}/g,(m,i)=>sel(bank,ans[i],"Пропуск "+(+i+1),0.5,1));
+  tasks.push(card(1, head(1,"Заповніть пропуски","3 бали (по 0,5 б)","Оберіть у кожному пропуску потрібне слово зі списку. Два слова зайві.")
+    + `<div class="bank">${bank.map(w=>`<span>${w}</span>`).join("")}</div><div class="cloze">${body}</div>`));
+}
+
+// 2. Класифікація
+tasks.push(card(2, head(2,"Класифікація біоелементів","2 бали (по 0,5 б)","До якої групи належить кожен елемент?")
+  + rowsTable(2,["Елемент","Група"],[
+    ["Оксиген (O)","органоген"],["Калій (K)","макроелемент"],["Йод (I)","мікроелемент"],["Сульфур (S)","макроелемент"]
+  ],["органоген","макроелемент","мікроелемент"],0.5)));
+
+// 3. Таблиця «Значення біоелементів»
+tasks.push(card(3, head(3,"Таблиця «Значення біоелементів»","3 бали (по 0,5 б)","Оберіть хімічний символ елемента, що виконує зазначену функцію.")
+  + rowsTable(3,["Значення в організмі","Символ"],[
+    ["У складі молекул усіх органічних речовин","C"],
+    ["Транспортування речовин з клітини, регуляція ритму серцевої діяльності","K"],
+    ["Транспортування речовин у клітину, здійснення подразливості","Na"],
+    ["Компонент гемоглобіну, міоглобіну, ферментів-цитохромів","Fe"],
+    ["Входить до складу тироксину, трийодтироніну","I"],
+    ["У складі вітаміну B<sub>12</sub>, який регулює кровотворення","Co","У складі вітаміну B12"]
+  ],["C","H","O","N","K","Ca","Na","Mg","Fe","P","Cl","S","F","I","Cu","Co"],0.5)));
+
+// 4. Зіставлення «Організм людини й метали»
+{
+  const f = [["А1","У вигляді катіонів забезпечує транспортування речовин із клітини"],
+    ["А2","Компонент гемоглобіну й міоглобіну"],["Л","Компонент інсуліну, РНК-полімерази, ДНК-полімерази"],
+    ["Н","У вигляді йонів підтримує гомеостаз рідин, транспортування речовин у клітини"],
+    ["Т1","У складі кісток, зубів, регулює зсідання крові й роботу серця"],
+    ["Т2","Необхідний для енергетики важливих процесів, протистресовий елемент"]];
+  tasks.push(card(4, head(4,"Зіставлення «Організм людини й метали»","4 бали (6 × 0,5 б + 1 б)","Зіставте біометали з їхнім біологічним значенням (оберіть позначку А1–Т2). Потім із перших літер позначок у порядку 1→6 складіть назву хімічного елемента, з якого завдяки біологічній сумісності виготовляють засоби для зшивання тканин, нервів і протези.")
+    + `<ul class="leg">${f.map(x=>`<li><b>${x[0]}</b> ${x[1]}</li>`).join("")}</ul>`
+    + rowsTable(4,["Біометал","Позначка"],[
+      ["Кальцій (1700 г)","Т1"],["Калій (250 г)","А1"],["Натрій (70 г)","Н"],["Магній (42 г)","Т2"],["Ферум (5 г)","А2"],["Цинк (3 г)","Л"]
+    ],f.map(x=>x[0]),0.5)
+    + `<div style="margin-top:10px;max-width:320px"><label>Назва елемента (літери за порядком 1→6)</label><input type="text" class="q" data-a="тантал" data-per="1" data-t="4" data-lab="Назва елемента" autocomplete="off"></div>`));
+}
+
+// 5. Так / Ні
+tasks.push(card(5, head(5,"Вірно чи ні?","3 бали (по 0,5 б)","Оберіть «Так», якщо твердження правильне, і «Ні», якщо хибне.")
+  + rowsTable(5,["Твердження","Відповідь"],[
+    ["Основні ознаки живого визначаються властивостями й функціями приблизно 30 біоелементів.","Так"],
+    ["Кобальт входить до складу вітаміну B12 (ціанкобаламіну).","Так"],
+    ["Йод є структурним компонентом інсуліну.","Ні"],
+    ["Кисень в окисно-відновних реакціях виступає як окисник — акцептор електронів.","Так"],
+    ["Більшість основ добре розчиняється у воді.","Ні"],
+    ["Кальцій карбонат і кальцій фосфат використовують для побудови черепашок, скелетів коралів, зубів.","Так"]
+  ],["Так","Ні"],0.5)));
+
+// 6. Дописати речення (перевіряє вчитель)
+{
+  const s = ["Біоелементи виконують у біосистемах такі функції: …",
+    "«Метали життя» — це …; вони мають здатність …",
+    "Нерозчинні мінеральні солі організми використовують для …, наприклад …"];
+  tasks.push(card(6, head(6,"Допишіть речення","3 бали (по 1 б, оцінює вчитель)","Завершіть кожне речення своїми словами, спираючись на текст параграфа.")
+    + s.map((x,i)=>`<div class="open"><label for="o${i}">${i+1}. ${x}</label><textarea id="o${i}" data-lab="${esc(x)}"></textarea></div>`).join("")));
+}
+
+// 7. Складні неорганічні речовини
+{
+  const r = ["регулятор дихання","токсична речовина","активує травні ферменти","карбонатна буферна система крові"];
+  tasks.push(card(7, head(7,"Складні біонеорганічні речовини","2 бали (по 0,5 б)","Зіставте речовину з її біологічною роллю.")
+    + rowsTable(7,["Речовина","Біологічна роль"],[
+      ["Карбон(IV) оксид, CO<sub>2</sub>",r[0],"CO2"],["Чадний газ, CO",r[1],"CO"],
+      ["Хлоридна кислота, HCl",r[2],"HCl"],["Карбонатна кислота, H<sub>2</sub>CO<sub>3</sub>",r[3],"H2CO3"]
+    ],r,0.5)));
+}
+
+document.getElementById("tasks").innerHTML = tasks.join("");
+
+const $ = id => document.getElementById(id);
+const msg = (t, c) => { $("msg").className = c||""; $("msg").textContent = t; };
+const nameOk = () => {
+  if ($("nm").value.trim().length < 3){ msg("Спершу введіть прізвище та ім’я.","err"); $("nm").focus(); $("nm").scrollIntoView({block:"center"}); return false; }
+  return true;
+};
+
+let last = null;
+function check(){
+  const per = {}, mx = {};
+  let tot = 0;
+  document.querySelectorAll(".q").forEach(q=>{
+    const t = q.dataset.t, p = +q.dataset.per;
+    per[t] = per[t]||0; mx[t] = (mx[t]||0)+p;
+    const ok = q.value !== "" && norm(q.value) === norm(q.dataset.a);
+    q.classList.toggle("ok", ok); q.classList.toggle("bad", !ok);
+    q.title = (!ok && CFG.SHOW_CORRECT) ? "Правильно: "+q.dataset.a : "";
+    if (ok){ per[t]+=p; tot+=p; }
+  });
+  for (const t in per) $("s"+t).textContent = "Результат завдання: "+fmt(per[t])+" з "+fmt(mx[t])+" б";
+  $("s6").textContent = "Це завдання оцінює вчитель (макс. 3 б)";
+  last = {tot, per, mx};
+  $("res").className = "card on";
+  $("res").innerHTML = `<b>Автоматично нараховано: ${fmt(tot)} з ${MAXAUTO} балів.</b><br>Завдання 6 (до 3 б) оцінить вчитель. Максимум за аркуш — ${MAXALL} балів.`;
+  return last;
+}
+
+function buildReport(){
+  const r = last, L = [];
+  L.push("РОБОЧИЙ АРКУШ: "+TITLE);
+  L.push("Учень/учениця: "+$("nm").value.trim());
+  L.push("Клас: "+($("cls").value.trim()||"—"));
+  L.push("Дата: "+new Date().toLocaleString("uk-UA"));
+  L.push("Автоматична оцінка: "+fmt(r.tot)+" з "+MAXAUTO+" б (завдання 6 — до 3 б — оцінює вчитель)");
+  L.push("");
+  const groups = {};
+  document.querySelectorAll(".q").forEach(q=>{ (groups[q.dataset.t] = groups[q.dataset.t]||[]).push(q); });
+  for (const t in groups){
+    L.push("--- Завдання "+t+": "+fmt(r.per[t])+" / "+fmt(r.mx[t])+" б ---");
+    groups[t].forEach(q=>{
+      const ok = q.value !== "" && norm(q.value) === norm(q.dataset.a);
+      L.push((ok?"[+] ":"[–] ")+q.dataset.lab+": "+(q.value||"(немає відповіді)")+(ok?"":"  (правильно: "+q.dataset.a+")"));
+    });
+    L.push("");
+  }
+  L.push("--- Завдання 6 (оцінює вчитель, до 3 б) ---");
+  document.querySelectorAll("textarea").forEach((a,i)=>{ L.push((i+1)+". "+a.dataset.lab); L.push("   Відповідь: "+(a.value.trim()||"(немає відповіді)")); });
+  return L.join("\n");
+}
+
+function payload(){
+  const answers = {};
+  document.querySelectorAll(".q").forEach(q=>{ answers[q.dataset.t+": "+q.dataset.lab] = q.value; });
+  const open = [...document.querySelectorAll("textarea")].map(a=>a.value.trim());
+  return {name:$("nm").value.trim(), group:$("cls").value.trim(), date:new Date().toISOString(), score:last.tot, maxAuto:MAXAUTO, answers, open, report:buildReport()};
+}
+
+$("bCheck").onclick = () => { if (!nameOk()) return; check(); msg("Перевірено. Не забудьте зберегти або надіслати відповіді вчителю.","good"); };
+
+$("bSave").onclick = () => {
+  if (!nameOk()) return; check();
+  const fn = "біологія_§19_"+$("nm").value.trim().replace(/[\\\/:*?"<>|]+/g,"").replace(/\s+/g,"_")+".txt";
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob(["\ufeff"+buildReport()],{type:"text/plain;charset=utf-8"}));
+  a.download = fn; document.body.appendChild(a); a.click(); a.remove();
+  msg("Файл «"+fn+"» збережено. Надішліть його вчителю.","good");
+};
+
+$("bCopy").onclick = async () => {
+  if (!nameOk()) return; check();
+  try { await navigator.clipboard.writeText(buildReport()); msg("Відповіді скопійовано. Вставте їх у повідомлення вчителю.","good"); }
+  catch(e){ msg("Не вдалося скопіювати. Скористайтеся кнопкою «Зберегти відповіді у файл».","err"); }
+};
+
+if (CFG.SUBMIT_URL){
+  $("bSend").style.display = "";
+  $("bSend").onclick = async () => {
+    if (!nameOk()) return; check();
+    try {
+      await fetch(CFG.SUBMIT_URL,{method:"POST",mode:"no-cors",body:JSON.stringify(payload())});
+      msg("Відповіді надіслано вчителю. Дякуємо!","good");
+    } catch(e){ msg("Не вдалося надіслати. Збережіть файл і надішліть його вчителю вручну.","err"); }
+  };
+}
+</script>
+</body>
+</html>
